@@ -195,7 +195,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Text(subtitle),
           const SizedBox(height: 8),
           DropdownButtonFormField<String>(
-            value: value,
+            initialValue: value,
             decoration: const InputDecoration(
               isDense: true,
               contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
