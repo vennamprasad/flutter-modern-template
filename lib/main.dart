@@ -1,26 +1,48 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
-import 'screens/profile_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/presentation/providers/theme_controller.dart';
+import 'core/presentation/providers/font_size_controller.dart';
 import 'screens/settings_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() {
-  runApp(const ModernTemplateApp());
+  runApp(
+    const ProviderScope(
+      child: ModernTemplateApp(),
+    ),
+  );
 }
 
-class ModernTemplateApp extends StatelessWidget {
+class ModernTemplateApp extends ConsumerWidget {
   const ModernTemplateApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Modern Template',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: const MainNavigator(),
-      debugShowCheckedModeBanner: false,
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeAsync = ref.watch(themeControllerProvider);
+    final fontSizeAsync = ref.watch(fontSizeControllerProvider);
+
+    return switch ((themeAsync, fontSizeAsync)) {
+      (AsyncData(value: final themeMode), AsyncData(value: final fontSize)) =>
+        MaterialApp(
+          title: 'Flutter Modern Template',
+          theme: AppTheme.lightTheme(fontSize),
+          darkTheme: AppTheme.darkTheme(fontSize),
+          themeMode: themeMode,
+          home: const MainNavigator(),
+          debugShowCheckedModeBanner: true,
+        ),
+      (AsyncError(error: final err), _) || (_, AsyncError(error: final err)) =>
+        MaterialApp(
+          home: Scaffold(
+            body: Center(child: Text('Error: $err')),
+          ),
+        ),
+      _ => const MaterialApp(
+          home: Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          ),
+        ),
+    };
   }
 }
 
@@ -35,8 +57,8 @@ class _MainNavigatorState extends State<MainNavigator> {
   int _currentIndex = 0;
   
   final List<Widget> _screens = [
-    const HomeScreen(),
-    const ProfileScreen(),
+    const Center(child: Text('Home (Under Construction)')),
+    const Center(child: Text('Profile (Under Construction)')),
     const SettingsScreen(),
   ];
 

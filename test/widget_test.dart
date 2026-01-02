@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_modern_template/main.dart';
 
 // Provide a minimal MyApp used by the widget test in case the package
 // does not expose a MyApp class with the expected behavior.
