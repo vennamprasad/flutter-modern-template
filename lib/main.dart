@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/presentation/providers/theme_controller.dart';
 import 'core/presentation/providers/font_size_controller.dart';
 import 'screens/settings_screen.dart';
+import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -31,7 +32,8 @@ class ModernTemplateApp extends ConsumerWidget {
           home: const MainNavigator(),
           debugShowCheckedModeBanner: true,
         ),
-      (AsyncError(error: final err), _) || (_, AsyncError(error: final err)) =>
+      (AsyncError(error: final err), _) ||
+      (_, AsyncError(error: final err)) =>
         MaterialApp(
           home: Scaffold(
             body: Center(child: Text('Error: $err')),
@@ -55,9 +57,9 @@ class MainNavigator extends StatefulWidget {
 
 class _MainNavigatorState extends State<MainNavigator> {
   int _currentIndex = 0;
-  
+
   final List<Widget> _screens = [
-    const Center(child: Text('Home (Under Construction)')),
+    const HomeScreen(),
     const Center(child: Text('Profile (Under Construction)')),
     const SettingsScreen(),
   ];

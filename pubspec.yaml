@@ -15,6 +15,10 @@ dependencies:
   riverpod_annotation: ^4.0.0
   shared_preferences: ^2.5.4
   dio: ^5.7.0
+  drift: ^2.24.2
+  sqlite3_flutter_libs: ^0.5.24
+  path_provider: ^2.1.4
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +29,7 @@ dev_dependencies:
   custom_lint: ^0.8.1
   riverpod_lint: ^3.1.0
   mockito: ^5.4.4
+  drift_dev: ^2.24.2
 
 flutter:
   uses-material-design: true

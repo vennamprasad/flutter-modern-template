@@ -34,7 +34,8 @@ class RemoteAuthRepository implements AuthRepository {
       // In a real app, we'd parse the token from response.data['token']
     } on DioException catch (e) {
       // Map Dio errors to Domain errors if needed
-      throw Exception('Login Failed: ${e.response?.data['error'] ?? e.message}');
+      throw Exception(
+          'Login Failed: ${e.response?.data['error'] ?? e.message}');
     }
   }
 }

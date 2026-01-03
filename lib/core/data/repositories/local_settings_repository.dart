@@ -64,9 +64,9 @@ class LocalSettingsRepository implements SettingsRepository {
   Future<ThemeMode> getThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
     final themeIndex = prefs.getInt(_themeKey);
-    
+
     if (themeIndex == null) return ThemeMode.system;
-    
+
     return ThemeMode.values[themeIndex];
   }
 

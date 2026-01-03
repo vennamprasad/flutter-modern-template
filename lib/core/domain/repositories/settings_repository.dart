@@ -24,6 +24,7 @@ abstract class SettingsRepository {
 
   /// Check if the user is logged in.
   Future<bool> isLoggedIn();
+
   /// Set the logged-in status.
   Future<void> setLoggedIn(bool loggedIn);
 

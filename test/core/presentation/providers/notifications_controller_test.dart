@@ -39,7 +39,8 @@ void main() {
       verify(mockSettingsRepository.getNotificationsEnabled()).called(1);
     });
 
-    test('toggleNotifications should update state and call repository', () async {
+    test('toggleNotifications should update state and call repository',
+        () async {
       when(mockSettingsRepository.getNotificationsEnabled())
           .thenAnswer((_) async => true);
 

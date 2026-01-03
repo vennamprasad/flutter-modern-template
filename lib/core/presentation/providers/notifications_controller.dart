@@ -14,7 +14,7 @@ class NotificationsController extends _$NotificationsController {
   Future<void> toggleNotifications(bool enabled) async {
     // Optimistic update
     state = AsyncData(enabled);
-    
+
     // Persist
     final repository = ref.read(settingsRepositoryProvider);
     await repository.setNotificationsEnabled(enabled);

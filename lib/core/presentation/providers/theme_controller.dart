@@ -22,7 +22,7 @@ class ThemeController extends _$ThemeController {
   Future<void> updateThemeMode(ThemeMode mode) async {
     // 1. Optimistically update the state (UI updates instantly)
     state = AsyncData(mode);
-    
+
     // 2. Persist the change (Fire and forget, or await if critical)
     final repository = ref.read(settingsRepositoryProvider);
     await repository.setThemeMode(mode);

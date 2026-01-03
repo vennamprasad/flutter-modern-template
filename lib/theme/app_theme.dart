@@ -34,7 +34,7 @@ class AppTheme {
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-        labelTextStyle: MaterialStateProperty.all(
+        labelTextStyle: WidgetStateProperty.all(
           _getTextTheme(fontSize, false).labelMedium,
         ),
       ),
@@ -75,7 +75,7 @@ class AppTheme {
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-        labelTextStyle: MaterialStateProperty.all(
+        labelTextStyle: WidgetStateProperty.all(
           _getTextTheme(fontSize, true).labelMedium,
         ),
       ),
@@ -91,19 +91,30 @@ class AppTheme {
   static TextTheme _getTextTheme(double fontSize, bool isDark) {
     // Base the scale off 16.0 being "normal"
     final double scale = fontSize / 16.0;
-    
-    final base = isDark ? Typography.material2021().white : Typography.material2021().black;
-    
+
+    final base = isDark
+        ? Typography.material2021().white
+        : Typography.material2021().black;
+
     return base.copyWith(
-      bodyLarge: base.bodyLarge?.copyWith(fontSize: (base.bodyLarge?.fontSize ?? 16) * scale),
-      bodyMedium: base.bodyMedium?.copyWith(fontSize: (base.bodyMedium?.fontSize ?? 14) * scale),
-      bodySmall: base.bodySmall?.copyWith(fontSize: (base.bodySmall?.fontSize ?? 12) * scale),
-      titleLarge: base.titleLarge?.copyWith(fontSize: (base.titleLarge?.fontSize ?? 22) * scale),
-      titleMedium: base.titleMedium?.copyWith(fontSize: (base.titleMedium?.fontSize ?? 16) * scale),
-      titleSmall: base.titleSmall?.copyWith(fontSize: (base.titleSmall?.fontSize ?? 14) * scale),
-      labelLarge: base.labelLarge?.copyWith(fontSize: (base.labelLarge?.fontSize ?? 14) * scale),
-      labelMedium: base.labelMedium?.copyWith(fontSize: (base.labelMedium?.fontSize ?? 12) * scale),
-      labelSmall: base.labelSmall?.copyWith(fontSize: (base.labelSmall?.fontSize ?? 11) * scale),
+      bodyLarge: base.bodyLarge
+          ?.copyWith(fontSize: (base.bodyLarge?.fontSize ?? 16) * scale),
+      bodyMedium: base.bodyMedium
+          ?.copyWith(fontSize: (base.bodyMedium?.fontSize ?? 14) * scale),
+      bodySmall: base.bodySmall
+          ?.copyWith(fontSize: (base.bodySmall?.fontSize ?? 12) * scale),
+      titleLarge: base.titleLarge
+          ?.copyWith(fontSize: (base.titleLarge?.fontSize ?? 22) * scale),
+      titleMedium: base.titleMedium
+          ?.copyWith(fontSize: (base.titleMedium?.fontSize ?? 16) * scale),
+      titleSmall: base.titleSmall
+          ?.copyWith(fontSize: (base.titleSmall?.fontSize ?? 14) * scale),
+      labelLarge: base.labelLarge
+          ?.copyWith(fontSize: (base.labelLarge?.fontSize ?? 14) * scale),
+      labelMedium: base.labelMedium
+          ?.copyWith(fontSize: (base.labelMedium?.fontSize ?? 12) * scale),
+      labelSmall: base.labelSmall
+          ?.copyWith(fontSize: (base.labelSmall?.fontSize ?? 11) * scale),
     );
   }
 }

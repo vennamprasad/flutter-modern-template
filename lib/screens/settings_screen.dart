@@ -33,20 +33,21 @@ class SettingsScreen extends ConsumerWidget {
                 data: (enabled) => Switch(
                   value: enabled,
                   onChanged: (value) {
-                    ref.read(notificationsControllerProvider.notifier)
-                       .toggleNotifications(value);
+                    ref
+                        .read(notificationsControllerProvider.notifier)
+                        .toggleNotifications(value);
                   },
                 ),
                 loading: () => const SizedBox(
-                  width: 24, 
-                  height: 24, 
+                  width: 24,
+                  height: 24,
                   child: CircularProgressIndicator(strokeWidth: 2),
                 ),
                 error: (_, __) => const Icon(Icons.error, color: Colors.red),
               ),
             ),
-             // Theme Mode
-             ListTile(
+            // Theme Mode
+            ListTile(
               leading: const Icon(Icons.brightness_6),
               title: const Text('Theme Mode'),
               subtitle: const Text('Choose app appearance'),
@@ -102,8 +103,9 @@ class SettingsScreen extends ConsumerWidget {
                       divisions: 14,
                       label: size.round().toString(),
                       onChanged: (value) {
-                        ref.read(fontSizeControllerProvider.notifier)
-                           .updateFontSize(value);
+                        ref
+                            .read(fontSizeControllerProvider.notifier)
+                            .updateFontSize(value);
                       },
                     ),
                   ],
@@ -122,8 +124,9 @@ class SettingsScreen extends ConsumerWidget {
                   value: lang,
                   onChanged: (String? newValue) {
                     if (newValue != null) {
-                      ref.read(languageControllerProvider.notifier)
-                         .updateLanguage(newValue);
+                      ref
+                          .read(languageControllerProvider.notifier)
+                          .updateLanguage(newValue);
                     }
                   },
                   items: const [
@@ -144,28 +147,32 @@ class SettingsScreen extends ConsumerWidget {
           ]),
           const SizedBox(height: 24),
           _buildSection(context, 'Networking Test', [
-             Consumer(
-               builder: (context, ref, child) {
-                 final authState = ref.watch(authControllerProvider);
-                 
-                 return ListTile(
-                   leading: const Icon(Icons.cloud_sync),
-                   title: const Text('Test Login (reqres.in)'),
-                   subtitle: authState.when(
-                     data: (_) => const Text('Idle (Ready to test)'),
-                     loading: () => const Text('Logging in...'),
-                     error: (e, _) => Text('Error: ${e.toString()}', style: const TextStyle(color: Colors.red)),
-                   ),
-                   trailing: ElevatedButton(
-                     onPressed: authState.isLoading ? null : () {
-                       ref.read(authControllerProvider.notifier)
-                          .login('eve.holt@reqres.in', 'cityslicka');
-                     },
-                     child: const Text('POST'),
-                   ),
-                 );
-               },
-             ),
+            Consumer(
+              builder: (context, ref, child) {
+                final authState = ref.watch(authControllerProvider);
+
+                return ListTile(
+                  leading: const Icon(Icons.cloud_sync),
+                  title: const Text('Test Login (reqres.in)'),
+                  subtitle: authState.when(
+                    data: (_) => const Text('Idle (Ready to test)'),
+                    loading: () => const Text('Logging in...'),
+                    error: (e, _) => Text('Error: ${e.toString()}',
+                        style: const TextStyle(color: Colors.red)),
+                  ),
+                  trailing: ElevatedButton(
+                    onPressed: authState.isLoading
+                        ? null
+                        : () {
+                            ref
+                                .read(authControllerProvider.notifier)
+                                .login('eve.holt@reqres.in', 'cityslicka');
+                          },
+                    child: const Text('POST'),
+                  ),
+                );
+              },
+            ),
           ]),
           const SizedBox(height: 24),
           _buildSection(context, 'About', [
@@ -180,7 +187,8 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSection(BuildContext context, String title, List<Widget> children) {
+  Widget _buildSection(
+      BuildContext context, String title, List<Widget> children) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -189,9 +197,9 @@ class SettingsScreen extends ConsumerWidget {
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary,
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
           ),
         ),
         Card(

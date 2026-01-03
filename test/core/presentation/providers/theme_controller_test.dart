@@ -22,7 +22,7 @@ void main() {
 
   setUp(() {
     mockSettingsRepository = MockSettingsRepository();
-    
+
     // Create a ProviderContainer that overrides the repository provider
     container = ProviderContainer(
       overrides: [
@@ -46,7 +46,7 @@ void main() {
         themeControllerProvider,
         (previous, next) {},
       );
-      
+
       // Wait for the initial build to complete
       await container.read(themeControllerProvider.future);
 
@@ -59,11 +59,11 @@ void main() {
       // Arrange
       when(mockSettingsRepository.getThemeMode())
           .thenAnswer((_) async => ThemeMode.light);
-          
+
       // Act
       // 1. Initialize
       await container.read(themeControllerProvider.future);
-      
+
       // 2. Add listener to track state changes
       container.listen(themeControllerProvider, (previous, next) {});
 
